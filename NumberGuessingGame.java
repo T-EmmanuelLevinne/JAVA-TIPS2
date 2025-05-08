@@ -128,59 +128,60 @@ public class NumberGuessingGame {
                           // AND the player has not yet won the game (!hasWon)
                           // can be read as --> While the number of attempts is less than the maximum allowed attempts, and the player has not yet won
                         System.out.print("Attempt " + (attempts + 1) + "/" + maxAttempts + ": Enter your guess: ");
-                       if (input.hasNextInt()) {  // Check if the user entered an integer
-    int guess = input.nextInt();  // Read the user's guess
-    attempts++;  // Count the attempt for this game
-    totalGuesses++;  // Count the total number of guesses across all games
+                        if (input.hasNextInt()) {
+                            int guess = input.nextInt();
+                            attempts++;
+                            totalGuesses++;
 
-    if (guess < minNumber || guess > maxNumber) {  // If guess is outside allowed range
-        System.out.println("Out of range!");
-    } else if (guess < secretNumber) {  // If guess is too low
-        System.out.println("Too low!");
-    } else if (guess > secretNumber) {  // If guess is too high
-        System.out.println("Too high!");
-    } else {  // If guess is correct
-        System.out.println("Correct! You guessed it in " + attempts + " attempts.");
-        hasWon = true;  // Mark game as won
-        gamesWon++;  // Increase the number of games won
-    }
-} else {  // If the input is not an integer
-    System.out.println("Invalid input!");
-    input.next();  // Skip the invalid input
-}
+                            if (guess < minNumber || guess > maxNumber) {
+                                System.out.println("Out of range!");
+                            } else if (guess < secretNumber) {
+                                System.out.println("Too low!");
+                            } else if (guess > secretNumber) {
+                                System.out.println("Too high!");
+                            } else {
+                                System.out.println("Correct! You guessed it in " + attempts + " attempts.");
+                                hasWon = true;
+                                gamesWon++;
+                            }
+                        } else {
+                            System.out.println("Invalid input!");
+                            input.next();
+                        }
+                    }
 
-if (!hasWon) {  // If the player didn't guess the number
-    System.out.println("Game Over! The number was: " + secretNumber);
-}
+                    if (!hasWon) {
+                        System.out.println("Game Over! The number was: " + secretNumber);
+                    }
 
-totalGamesPlayed++;  // Count the number of games played
+                    totalGamesPlayed++;
 
-int gamesLost = totalGamesPlayed - gamesWon;  // Calculate how many games were lost
-double winRatio = (gamesLost > 0) ? (double) gamesWon / gamesLost : gamesWon;  // Calculate win/loss ratio
-double avgGuesses = (double) totalGuesses / totalGamesPlayed;  // Calculate average guesses per game
+                    int gamesLost = totalGamesPlayed - gamesWon;
+                    double winRatio = (gamesLost > 0) ? (double) gamesWon / gamesLost : gamesWon;
+                    double avgGuesses = (double) totalGuesses / totalGamesPlayed;
 
-// Store game statistics
-statistics.put("Games Played", String.valueOf(totalGamesPlayed));
-statistics.put("Games Won", String.valueOf(gamesWon));
-statistics.put("Games Lost", String.valueOf(gamesLost));
-statistics.put("Win/Loss Ratio", String.format("%.2f", winRatio));
-statistics.put("Average Guesses per Game", String.format("%.2f", avgGuesses));
-statistics.put("Total Guesses", String.valueOf(totalGuesses));
+                    statistics.put("Games Played", String.valueOf(totalGamesPlayed));
+                    statistics.put("Games Won", String.valueOf(gamesWon));
+                    statistics.put("Games Lost", String.valueOf(gamesLost));
+                    statistics.put("Win/Loss Ratio", String.format("%.2f", winRatio));
+                    statistics.put("Average Guesses per Game", String.format("%.2f", avgGuesses));
+                    statistics.put("Total Guesses", String.valueOf(totalGuesses));
 
-saveStatistics(statistics);  // Save the statistics to a file or database
-break;
+                    saveStatistics(statistics);
+                    break;
 
-case 3:
-    clearHistory();  // Clear the saved game history
-    statistics.clear();  // Clear the statistics map
-    totalGamesPlayed = 0;  // Reset total games played
-    gamesWon = 0;  // Reset number of games won
-    totalGuesses = 0;  // Reset total number of guesses
-    break;
+                case 3:
 
-case 4:
-    continueProgram = false;  // Exit the main game loop
-    break;
+                    clearHistory();
+                    statistics.clear();
+                    totalGamesPlayed = 0;
+                    gamesWon = 0;
+                    totalGuesses = 0;
+                    break;
+
+                case 4:
+                    continueProgram = false;
+                    break;
 
                 default:
                     System.out.println("Invalid choice!");
