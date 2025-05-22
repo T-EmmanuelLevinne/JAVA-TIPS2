@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class NumberGuessingGame {
+public class NumberGuessingGame{
     static final String STAT_FILE = "statistics.txt";
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -94,9 +94,9 @@ public class NumberGuessingGame {
 
                 case 2:
                     int minNumber = 1, maxNumber = 100, maxAttempts = 10;  
-    // These are the starting settings for the game:
-        // The number to guess will be between 1 and 100, and the player gets 10 tries.
-        // This is the default value
+            // These are the starting settings for the game:
+                // The number to guess will be between 1 and 100, and the player gets 10 tries.
+                // This is the default value
                     int difficultyLevel = 0;
                      // This will store the difficulty level the player chooses (like Easy, Medium, etc.)
 
@@ -122,7 +122,7 @@ public class NumberGuessingGame {
                             switch (difficultyLevel) {
                                 case 1: maxNumber = 50; maxAttempts = 15; break;
                                 case 2: maxNumber = 100; maxAttempts = 10; break;
-                                case 3: maxNumber = 150; maxAttempts = 7; break;
+                                case 3: maxNumber = 150; maxAttempts =7; break;
                                 case 4: maxNumber = 200; maxAttempts = 4; break;
                             }
                         } else {
@@ -153,7 +153,7 @@ public class NumberGuessingGame {
                           // AND the player has not yet won the game (!hasWon)
                           // can be read as --> While the number of attempts is less than the maximum allowed attempts, and the player has not yet won
                         System.out.print("Attempt " + (attempts + 1) + "/" + maxAttempts + ": Enter your guess: ");
-                        if (input.hasNextInt()) {
+                          if (input.hasNextInt()) {
                             int guess = input.nextInt();
                             attempts++;
                             totalGuesses++;
@@ -185,9 +185,16 @@ public class NumberGuessingGame {
                     totalGamesPlayed++;
 
 
-                    int gamesLost = totalGamesPlayed - gamesWon;
-                    double winRatio = (gamesLost > 0) ? (double) gamesWon / gamesLost : gamesWon;
-                    double avgGuesses = (double) totalGuesses / totalGamesPlayed;
+                    int gamesLost = totalGamesPlayed - gamesWon;  
+                     // can be read as --> Calculate the number of games lost by subtracting wins from total games
+
+                    double winRatio = (gamesLost > 0) ? (double) gamesWon / gamesLost : gamesWon;  
+                  // can be read as --> If there are any losses, calculate win ratio as wins divided by losses; 
+                  // otherwise, just use the number of games won as the ratio
+                  //condition ? value_if_true : value_if_false;
+
+                double avgGuesses = (double) totalGuesses / totalGamesPlayed;  
+                // can be read as --> Calculate the average number of guesses per game 
 
 
                     statistics.put("Games Played", String.valueOf(totalGamesPlayed));
@@ -250,9 +257,8 @@ public class NumberGuessingGame {
             System.out.println("Error saving statistics.");
         }
     }
-
-
-    public static HashMap<String, String> loadStatistics() {
+    //🥺👉👈
+      public static HashMap<String, String> loadStatistics() {
         HashMap<String, String> stats = new HashMap<>();
         File file = new File("statistics.txt");
         if (file.exists()) {
