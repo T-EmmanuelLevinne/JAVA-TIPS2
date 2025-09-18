@@ -1,4 +1,4 @@
-public class LibraryBookSorting {
+public class isbn {
 
     // ==============================
     // Team Conquer (Students 1–8)
