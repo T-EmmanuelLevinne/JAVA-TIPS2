@@ -1,4 +1,4 @@
-public class isbn {
+public class mergeSortBooks {
 
     // ==============================
     // Team Conquer (Students 1–8)
